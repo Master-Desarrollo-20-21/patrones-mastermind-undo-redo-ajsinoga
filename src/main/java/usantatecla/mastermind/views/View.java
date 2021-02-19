@@ -1,11 +1,10 @@
 package usantatecla.mastermind.views;
 
-import usantatecla.mastermind.controllers.Controller;
-import usantatecla.mastermind.controllers.ControllersVisitor;
+import usantatecla.mastermind.controllers.*;
 
-public abstract class View implements ControllersVisitor {
+public abstract class View implements ControllerVisitor {
 	
-	public void interact(Controller controller) {
+	public void interact(AcceptorController controller) {
 		controller.accept(this);
 	}
 

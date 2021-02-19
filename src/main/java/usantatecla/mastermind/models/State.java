@@ -1,5 +1,7 @@
 package usantatecla.mastermind.models;
 
+import usantatecla.mastermind.types.StateValue;
+
 public class State {
 		
 	private StateValue stateValue;
@@ -9,7 +11,7 @@ public class State {
 	}
 	
 	public void next() {
-		this.stateValue = StateValue.values()[this.stateValue.ordinal()+1];
+		this.stateValue = StateValue.values()[this.stateValue.ordinal() + 1];
 	}
 	
 	public void reset() {

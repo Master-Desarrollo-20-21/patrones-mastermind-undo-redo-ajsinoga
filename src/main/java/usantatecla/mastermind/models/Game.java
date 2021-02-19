@@ -18,10 +18,10 @@ public class Game {
 	private int attempts;
 
 	public Game() {
-		this.clear();
+		this.reset();
 	}
 
-	public void clear() {
+	public void reset() {
 		this.secretCombination = new SecretCombination();
 		this.proposedCombinations = new ArrayList<ProposedCombination>();
 		this.results = new ArrayList<Result>();
@@ -30,8 +30,8 @@ public class Game {
 
 	public void addProposedCombination(List<Color> colors) {
 		ProposedCombination proposedCombination = new ProposedCombination(colors);
-		this.proposedCombinations.add(proposedCombination);
-		this.results.add(this.secretCombination.getResult(proposedCombination));
+		this.proposedCombinations.add(this.attempts, proposedCombination);
+		this.results.add(this.attempts, this.secretCombination.getResult(proposedCombination));
 		this.attempts++;
 	}
 
@@ -40,7 +40,10 @@ public class Game {
 	}
 	
 	public boolean isWinner() {
-		return this.results.get(this.attempts-1).isWinner();
+		if (this.attempts > 0) {
+			return this.results.get(this.attempts-1).isWinner();
+		}
+		return false;
 	}
 
 	public int getAttempts() {
@@ -61,6 +64,14 @@ public class Game {
 
 	public int getWidth() {
 		return Combination.getWidth();
+	}
+
+	public Memento createMemento() {
+		return new Memento(this);
+	}
+
+	public void setMemento(Memento memento) {
+		this.attempts = memento.getAttempts();
 	}
 
 }

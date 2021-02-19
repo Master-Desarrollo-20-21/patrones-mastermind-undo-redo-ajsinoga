@@ -1,6 +1,6 @@
 package usantatecla.mastermind.views.graphics;
 
-import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.PlayController;
 import usantatecla.mastermind.controllers.ResumeController;
 import usantatecla.mastermind.controllers.StartController;
 import usantatecla.mastermind.views.View;
@@ -19,15 +19,15 @@ public class GraphicsView extends View {
 	}
 
 	
-	public void visit(ProposalController proposalController) {
-		this.gameView.interact(proposalController);
+	public void visit(PlayController playController) {
+		this.gameView.interact(playController);
 	}
 
 	
 	public void visit(ResumeController resumeController) {
-		ResumeDialog resumeDialog = new ResumeDialog();
-		resumeController.resume(resumeDialog.isNewGame());
+		ResumeDialog resumeDialog = new ResumeDialog();		
 		if (resumeDialog.isNewGame()) {
+			resumeController.reset();
 			this.gameView = new GameView();
 		} else {
 			this.gameView.setVisible(false);

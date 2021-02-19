@@ -3,7 +3,7 @@ package usantatecla.mastermind.views.console;
 import java.util.ArrayList;
 import java.util.List;
 
-import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.PlayController;
 import usantatecla.mastermind.types.Color;
 import usantatecla.mastermind.views.console.ColorView;
 import usantatecla.utils.WithConsoleView;
@@ -11,14 +11,14 @@ import usantatecla.mastermind.views.MessageView;
 
 class ProposedCombinationView extends WithConsoleView {
 	
-	private ProposalController proposalController;
+	private PlayController playController;
 	
-	ProposedCombinationView(ProposalController proposalController) {
-		this.proposalController = proposalController;
+	ProposedCombinationView(PlayController playController) {
+		this.playController = playController;
 	}
 	
 	void write(int position) {
-		for (Color color : this.proposalController.getColors(position)) {
+		for (Color color : this.playController.getColors(position)) {
 			new ColorView(color).write();
 		}
 	}

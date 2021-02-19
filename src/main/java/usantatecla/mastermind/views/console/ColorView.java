@@ -10,7 +10,7 @@ class ColorView extends usantatecla.mastermind.views.ColorView {
 	}
 	
 	void write() {
-		new Console().write(ColorView.INITIALS[this.color.ordinal()]);
+		Console.getInstance().write(ColorView.INITIALS[this.color.ordinal()]);
 	}
 
 }

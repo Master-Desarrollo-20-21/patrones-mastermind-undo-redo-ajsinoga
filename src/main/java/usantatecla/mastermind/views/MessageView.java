@@ -8,7 +8,9 @@ public enum MessageView {
 	PROPOSED_COMBINATION("Propose a combination: "),
 	TITLE("----- MASTERMIND -----"),
 	WINNER("You've won!!! ;-)"),
-	LOOSER("You've lost!!! :-(");
+	LOOSER("You've lost!!! :-("),
+	UNDO_COMMAND("Undo previous action"),
+	REDO_COMMAND("Redo previous action");
 
 	private String message;
 	
