@@ -8,9 +8,8 @@ import usantatecla.mastermind.types.Color;
 class SecretCombination extends Combination {
 
 	SecretCombination() {
-		for(Color color: Color.values()) {
-			this.colors.add(color);
-		}
+		super();
+		this.colors = Color.getAll();
 		Random random = new Random(System.currentTimeMillis());
 		for (int i = 0; i < Color.length() - Combination.getWidth(); i++) {
 			this.colors.remove(random.nextInt(this.colors.size()));

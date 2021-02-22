@@ -1,20 +1,35 @@
 package usantatecla.mastermind.models;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import usantatecla.mastermind.types.Color;
 
 public class Memento {
 
-    private int attempt;
-    private List<Color> colors;
+    private List<ProposedCombination> proposedCombinations;
 
-    public Memento(Game game) { 
-        this.attempt = game.getAttempts();
+    public Memento(List<ProposedCombination> proposedCombinations) { 
+        this.proposedCombinations = new ArrayList<ProposedCombination>();
+        for (int i = 0; i < proposedCombinations.size(); i++) {
+            if (proposedCombinations.get(i) != null) {
+                this.proposedCombinations.add(i, proposedCombinations.get(i).copy());
+            }
+        }
     }
 
-	int getAttempts() {
-		return this.attempt;
-	}
+    public int getAttempts() {
+        return this.proposedCombinations.size();
+    }
+
+    public List<ProposedCombination> getProposedCombinations() {
+        return this.proposedCombinations;
+    }
+
+    public List<Result> getResults(SecretCombination secretCombination) {
+        List<Result> results = new ArrayList<Result>();
+        for (int i = 0; i < getAttempts(); i++) {
+            results.add(i, secretCombination.getResult(proposedCombinations.get(i)));
+        }
+        return results;
+    }
 
 }

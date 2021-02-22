@@ -7,7 +7,7 @@ import usantatecla.mastermind.types.Color;
 
 public class Game {
 
-	private static final int MAX_LONG = 10;
+	static final int MAX_ATTEMPTS = 10;
 
 	private SecretCombination secretCombination;
 
@@ -36,7 +36,7 @@ public class Game {
 	}
 
 	public boolean isLooser() {
-		return this.attempts == Game.MAX_LONG;
+		return this.attempts == Game.MAX_ATTEMPTS;
 	}
 	
 	public boolean isWinner() {
@@ -67,11 +67,13 @@ public class Game {
 	}
 
 	public Memento createMemento() {
-		return new Memento(this);
+		return new Memento(this.proposedCombinations);
 	}
 
 	public void setMemento(Memento memento) {
 		this.attempts = memento.getAttempts();
+		this.proposedCombinations = memento.getProposedCombinations();
+		this.results = memento.getResults(this.secretCombination);
 	}
 
 }
